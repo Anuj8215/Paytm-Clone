@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected successfully."))
   .catch((err) => {
     console.error("MongoDB connection failed:", err);
     process.exit(1);
   });
 
-
-
+//!SECTION - USER SCHEMA
 const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -29,8 +29,25 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
 });
+
+//!SECTION - ACCOUNTS SCHEMA
+
+const accountSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  balance: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+});
+
 // Create User Model
 const User = mongoose.model("User", UserSchema);
+const Account = mongoose.model("Account", accountSchema);
 
 // Export
-module.exports = { User };
+module.exports = { User, Account };
