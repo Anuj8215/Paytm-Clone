@@ -1,5 +1,5 @@
 
-import React from 'react';
+
 import Sidebar from '../../components/payment/Sidebar';
 import MainContent from '../../components/payment/MainContent';
 

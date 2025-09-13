@@ -1,5 +1,5 @@
 
-import React from 'react';
+
 import Header from '../../components/landing/Header';
 import Hero from '../../components/landing/Hero';
 import Services from '../../components/landing/Services';
